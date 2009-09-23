@@ -29,5 +29,35 @@ You can also override defaults per model
       check :description, lambda { |per| per.description.present? }
       check :main_image,  lambda { |per| per.main_image? }, :low
     end
-    
+  
+At present the plugin only works with Rails 2.3 onwards (I18n is required)  
+
+
+Passed checks and Fails checks
+------------------------------
+
+Both the _passed\_checks_ and _failed\_checks_ methods return an array of hashes with extended information about the check.
+The check hash includes a translated title, description and extra information which is based on the name of the check.
+The translation structure is as such:
+
+    en:
+      completeness_scoring:
+        models:
+          my_model:
+            name_of_check:
+              title: 'Title'
+              description: 'The Check Description'
+              extra: 'Extra Info'
+
+
+Up and coming features
+----------------------
+
+- options to save the score to a field (caching) - good for searching on
+- ability to 'share' common lambdas 
+- define methods on the class to use in the checks
+- better docs
+- more tests
+- add a rails version check
+- add backwards compatibility for other rails versions
 
