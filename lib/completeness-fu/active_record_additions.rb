@@ -10,7 +10,7 @@ module CompletenessFu
     
     def self.included(base)
       base.class_eval do
-        def self.define_completeness_scoring(&block)
+        def self.define_completeness_scoring(&checks_block)
           class_inheritable_array :completeness_checks
           cattr_accessor :default_weighting
           cattr_accessor :model_weightings
@@ -21,8 +21,8 @@ module CompletenessFu
           self.completeness_checks ||= []
           self.default_weighting   ||= CompletenessFu.default_weightings
           self.model_weightings    ||= CompletenessFu.common_weightings
-
-          block.call
+          
+          self.instance_eval(&checks_block)
         end
       end
     end
@@ -48,6 +48,10 @@ module CompletenessFu
             self.model_weightings = custom_weighting_opts
           end
         end
+        
+        def cache_score(score_type = :relative)
+          before_validation lambda { |instance| instance.send :cache_completeness_score, score_type }
+        end        
     end
     
     
@@ -63,7 +67,13 @@ module CompletenessFu
       # returns an array of hashes with the translated name, description + weighting
       def passed_checks
         self.completeness_checks.inject([]) do |passed, check| 
-          passed << translate_check_details(check) if check[:check].call(self)
+          case check[:check]
+          when Proc
+            passed << translate_check_details(check) if check[:check].call(self)
+          when Symbol
+            passed << translate_check_details(check) if self.send check[:check]
+          end
+          
           passed
         end
       end
@@ -90,6 +100,18 @@ module CompletenessFu
           extra = I18n.t("#{default_translation_path}.#{full_check[:name]}.extra")
           
           full_check.merge({ :title => title, :description => desc, :extra => extra})
+        end
+        
+        def cache_completeness_score(score_type)
+          score = case score_type
+                  when :relative
+                    self.percent_complete
+                  when :absolute
+                    self.completeness_score
+                  else
+                    raise ArgumentException, 'completeness scoring type not recognized'
+                  end
+          self.cached_completeness_score = score
         end
     end
     

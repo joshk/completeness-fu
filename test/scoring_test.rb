@@ -126,4 +126,54 @@ class ScoringTest < Test::Unit::TestCase
       assert_equal ScoringTest.model_weightings[:super_high], @st.completeness_score
     end
   end
+  
+  
+  context "A class with scoring defined with a check using a symbol to a private method" do
+    setup do
+      reset_class 'ScoringTest'
+      ScoringTest.class_eval do
+        define_completeness_scoring do
+          check :title, :title_present?, :high
+        end
+        
+        private
+          def title_present?
+            self.title.present?
+          end
+      end
+      @st = ScoringTest.new
+      @st.title = 'I have a title'
+    end
+    
+    should "have a scoring from the common_weightings hash used used" do
+      assert_equal 1, @st.passed_checks.size
+      assert_equal 60, @st.completeness_score
+    end
+  end
+  
+  
+  context "A class with scoring defined and cache to field directive" do
+    setup do
+      reset_class 'ScoringTest'
+      ScoringTest.class_eval do
+        define_completeness_scoring do
+          cache_score :absolute
+          check :title, :title_present?, :high
+        end
+        
+        private
+          def title_present?
+            self.title.present?
+          end
+      end
+      @st = ScoringTest.new
+      @st.title = 'I have a title'
+    end
+    
+    should "have a before filter added, and save the defined calculation to the default field" do
+      assert_equal nil, @st.cached_completeness_score
+      @st.valid?
+      assert_equal @st.completeness_score, @st.cached_completeness_score
+    end
+  end
 end
