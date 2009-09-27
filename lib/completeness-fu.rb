@@ -1,4 +1,5 @@
 require 'completeness-fu/active_record_additions'
+require 'completeness-fu/scoring_builder'
 
 module ActiveRecord
   Base.class_eval do

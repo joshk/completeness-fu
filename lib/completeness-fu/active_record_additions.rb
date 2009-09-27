@@ -17,12 +17,13 @@ module CompletenessFu
           
           self.send :extend, ClassMethods
           self.send :include, InstanceMethods
-
-          self.completeness_checks ||= []
-          self.default_weighting   ||= CompletenessFu.default_weightings
-          self.model_weightings    ||= CompletenessFu.common_weightings
           
-          self.instance_eval(&checks_block)
+          checks_results = CompletenessFu::ScoringBuilder.generate(self, &checks_block)
+          
+          self.default_weighting   = checks_results[:default_weighting]
+          self.completeness_checks = checks_results[:completeness_checks]
+          self.model_weightings    = checks_results[:model_weightings]
+          self.before_validation checks_results[:cache_score_details] if checks_results[:cache_score_details]
         end
       end
     end
@@ -32,26 +33,6 @@ module CompletenessFu
       def max_completeness_score
         self.completeness_checks.inject(0) { |score, check| score += check[:weighting] }
       end
-      
-      private 
-        def check(name, check, weighting = nil)
-          weighting ||= self.default_weighting
-          weighting = self.model_weightings[weighting] if weighting.is_a?(Symbol)
-          self.completeness_checks << { :name => name, :check => check, :weighting => weighting}
-        end
-        
-        def weightings(custom_weighting_opts)
-          use_common = custom_weighting_opts.delete(:merge_with_common)
-          if use_common
-            self.model_weightings.merge!(custom_weights)
-          else
-            self.model_weightings = custom_weighting_opts
-          end
-        end
-        
-        def cache_score(score_type = :relative)
-          before_validation lambda { |instance| instance.send :cache_completeness_score, score_type }
-        end        
     end
     
     
