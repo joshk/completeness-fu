@@ -80,7 +80,6 @@ The translation structure is as such:
 Up and coming features
 ----------------------
 
-- move the scoring check builder into its own class so that it works within a clean room
 - enhance caching so filter type can be changed and field to save score to can be customized
 - ability to 'share' common lambdas 
 - better docs
@@ -88,8 +87,13 @@ Up and coming features
 - add a rails version check
 - add backwards compatibility for other rails versions
 
+
 Change Log
 ----------
+
+28 Sep 09
+
+- move the scoring check builder into its own class so that it works within a clean room
 
 24 Sep 09
 
