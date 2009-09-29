@@ -3,6 +3,7 @@ module CompletenessFu
   class << self
     attr_accessor :common_weightings
     attr_accessor :default_weightings
+    attr_accessor :default_i18n_namespace
   end
     
   
@@ -75,12 +76,14 @@ module CompletenessFu
       private 
       
         def translate_check_details(full_check)
-          default_translation_path = "completeness_scoring.models.#{self.class.name.downcase}"
-          title = I18n.t("#{default_translation_path}.#{full_check[:name]}.title")
-          desc  = I18n.t("#{default_translation_path}.#{full_check[:name]}.description")
-          extra = I18n.t("#{default_translation_path}.#{full_check[:name]}.extra")
+          namespace = CompletenessFu.default_i18n_namespace + [self.class.name.downcase.to_sym, full_check[:name]]
           
-          full_check.merge({ :title => title, :description => desc, :extra => extra})
+          translations = [:title, :description, :extra].inject({}) do |list, field|
+                           list[field] = I18n.t(field.to_sym, :scope => namespace)
+                           list
+                         end
+          
+          full_check.merge(translations)
         end
         
         def cache_completeness_score(score_type)

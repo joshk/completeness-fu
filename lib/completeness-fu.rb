@@ -9,3 +9,4 @@ end
 
 CompletenessFu.common_weightings = { :low => 20, :medium => 40, :high => 60 }
 CompletenessFu.default_weightings = 40
+CompletenessFu.default_i18n_namespace = [:completeness_scoring, :models]

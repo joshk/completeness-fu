@@ -91,6 +91,10 @@ Up and coming features
 Change Log
 ----------
 
+29 Sep 09
+
+- added ability to customize the default translations namespace using CompletenessFu.default\_i18n\_namespace
+
 28 Sep 09
 
 - move the scoring check builder into its own class so that it works within a clean room
