@@ -103,7 +103,7 @@ module CompletenessFu
                   else
                     raise ArgumentException, 'completeness scoring type not recognized'
                   end
-          self.cached_completeness_score = score
+          self.cached_completeness_score = score.round
         end
     end
     
