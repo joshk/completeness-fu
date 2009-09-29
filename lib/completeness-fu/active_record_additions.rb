@@ -4,6 +4,7 @@ module CompletenessFu
     attr_accessor :common_weightings
     attr_accessor :default_weightings
     attr_accessor :default_i18n_namespace
+    attr_accessor :default_grading
   end
     
   
@@ -70,6 +71,13 @@ module CompletenessFu
       # returns the percentage of completeness (relative score)
       def percent_complete
         self.completeness_score.to_f / self.class.max_completeness_score.to_f  * 100
+      end
+      
+      # returns a basic 'grading' based on percent_complete, defaults are :high, :medium, :low, and :poor
+      def completeness_grade
+        CompletenessFu.default_grading.each do |grading| 
+          return grading.first if grading.last.include?(self.percent_complete) 
+        end
       end
       
       

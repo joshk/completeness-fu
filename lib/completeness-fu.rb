@@ -7,6 +7,14 @@ module ActiveRecord
   end
 end
 
-CompletenessFu.common_weightings = { :low => 20, :medium => 40, :high => 60 }
+
+CompletenessFu.common_weightings  = { :low => 20, :medium => 40, :high => 60 }
+
 CompletenessFu.default_weightings = 40
+
 CompletenessFu.default_i18n_namespace = [:completeness_scoring, :models]
+
+CompletenessFu.default_grading    = { :poor => 0..24, 
+                                      :low =>  25..49, 
+                                      :medium => 50..79, 
+                                      :high => 80..100 }

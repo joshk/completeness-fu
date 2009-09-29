@@ -176,4 +176,23 @@ class ScoringTest < Test::Unit::TestCase
       assert_equal @st.completeness_score, @st.cached_completeness_score
     end
   end
+  
+  
+  context "A class with scoring" do
+    setup do
+      reset_class 'ScoringTest'
+      ScoringTest.class_eval do
+        define_completeness_scoring do
+          check :title, lambda { |test| test.title.present? }, :high
+        end
+      end
+      @st = ScoringTest.new
+    end
+    
+    should "have a grade of :high" do
+      assert_equal :poor, @st.completeness_grade
+      @st.title = 'I have a title'
+      assert_equal :high, @st.completeness_grade
+    end
+  end
 end

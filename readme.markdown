@@ -80,6 +80,7 @@ The translation structure is as such:
 Up and coming features
 ----------------------
 
+
 - enhance caching so filter type can be changed and field to save score to can be customized
 - ability to 'share' common lambdas 
 - better docs
@@ -93,6 +94,7 @@ Change Log
 
 29 Sep 09
 
+- added a 'grading' method which returns either :poor, :low, :medium or :high based on its percentage complete
 - added ability to customize the default translations namespace using CompletenessFu.default\_i18n\_namespace
 
 28 Sep 09
@@ -102,4 +104,4 @@ Change Log
 24 Sep 09
 
 - options to save the score to a field (caching) - good for searching on
-- define methods on the class to use in the checks ( 24-Sep )
+- define methods on the class to use in the checks
