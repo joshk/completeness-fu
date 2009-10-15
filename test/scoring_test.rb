@@ -134,21 +134,35 @@ class ScoringTest < Test::Unit::TestCase
       ScoringTest.class_eval do
         define_completeness_scoring do
           check :title, :title_present?, :high
+          check :name, :name_present?, :high
         end
-        
+
         private
           def title_present?
             self.title.present?
           end
+
+          def name_present?
+            false
+          end
+
       end
       @st = ScoringTest.new
       @st.title = 'I have a title'
     end
-    
+
+    should "have the correct failing checks" do
+      assert_equal 1, @st.passed_checks.size
+      assert_equal 1, @st.failed_checks.size
+      assert_equal 60, @st.completeness_score
+      assert_equal 50.0, @st.percent_complete
+    end
+
     should "have a scoring from the common_weightings hash used used" do
       assert_equal 1, @st.passed_checks.size
       assert_equal 60, @st.completeness_score
     end
+
   end
   
   

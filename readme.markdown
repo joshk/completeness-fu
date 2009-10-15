@@ -33,9 +33,9 @@ And what you get for free on the model : _passed\_checks_, _failed\_checks_, _co
 
 You can also add the following to an initializer to set some defaults:
 
-    CompletenessScoring.common_weights = { :low => 30, :medium => 50, :high => 70 }
+    CompletenessFu.common_weights = { :low => 30, :medium => 50, :high => 70 }
 
-    CompletenessScoring.default_weighting = :medium
+    CompletenessFu.default_weighting = :medium
 
 You can also override defaults per model or use symbols for the checks instead of lambdas, thus allowing you to place check logic as methods in your class (public or private).
 
@@ -92,6 +92,13 @@ Up and coming features
 Change Log
 ----------
 
+15 Oct 09
+
+- bug fix for failed checks when check is a symbol to a method
+- bug fix for grading (percent complete needed to be rounded)
+- change of CompletenessFu.default\_weightings to CompletenessFu.default\_weighting
+- change of CompletenessFu.default\_grading to CompletenessFu.default\_gradings
+
 29 Sep 09
 
 - added a 'grading' method which returns either :poor, :low, :medium or :high based on its percentage complete
@@ -105,3 +112,11 @@ Change Log
 
 - options to save the score to a field (caching) - good for searching on
 - define methods on the class to use in the checks
+ 
+
+
+Contributors
+------------
+
+- Peter (pero-ict)
+- Andrew Brown (omenking)

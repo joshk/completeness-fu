@@ -9,7 +9,7 @@ module CompletenessFu
       sb = ScoringBuilder.new
       
       sb.completeness_checks = []
-      sb.default_weighting   = CompletenessFu.default_weightings
+      sb.default_weighting   = CompletenessFu.default_weighting
       sb.model_weightings    = CompletenessFu.common_weightings
       
       sb.instance_eval(&block)
