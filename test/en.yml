@@ -1,7 +1,7 @@
 en:
   completeness_scoring:
     models:
-      scoringtest:
+      scoring_test:
         title:
           title: 'Title'
           description: 'The Scoring Test Description'
