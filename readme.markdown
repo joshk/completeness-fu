@@ -37,13 +37,34 @@ How do I use it?
 
 If you want your model to only be regarded as complete if it has a title, description, and picture, you can do the following:
 
-    define_completeness_scoring do
-      check :title,       lambda { |per| per.title.present? },  :high
-      check :description, lambda { |per| per.description.present? }, :medium
-      check :main_image,  lambda { |per| per.main_image? },     :low
+    class Example < ActiveRecord::Base
+      define_completeness_scoring do
+        check :title,       lambda { |per| per.title.present? },        :high   # => defaults to 60
+        check :description, lambda { |per| per.description.present? },  :medium # => defaults to 40
+        check :main_image,  lambda { |per| per.main_image? },           :low    # => defaults to 20
+      end
     end
 
-You also get the following methods for free on the model instance : _passed\_checks_, _failed\_checks_, _completeness\_score_, _percent\_complete_.
+Now, you can access several methods to find out how far along a model is : _passed\_checks_, _failed\_checks_, _completeness\_score_, _percent\_complete_.
+
+    @example = Example.new
+
+    @example.passed_checks.size # => 0
+    @example.failed_checks.size # => 3
+
+    @example.completeness_score # => 0
+    @example.percent_complete   # => 0
+
+    @example.title = "An Awesome Example"
+    @example.passed_checks.size # => 1
+    @example.failed_checks.size # => 2
+
+    @example.completeness_score # => 60
+    @example.percent_complete   # => 50
+
+
+Options
+-------
 
 You can add the following to an initializer to set some defaults:
 
@@ -70,6 +91,9 @@ And if you want to cache the score to a field so you can use it in database sear
       check :title,       lambda { |per| per.title.present? }, :super_high
       check :description, :description_present?
     end
+
+Requirements
+------------
 
 If you are not using one of the above ORMs, make sure `ActiveModel::Validations` and `ActiveModel::Validations::Callbacks` are included.
 
@@ -136,3 +160,4 @@ Contributors
 
 - Peter (pero-ict)
 - Andrew Brown (omenking)
+- Paul Campbell (paulca)
