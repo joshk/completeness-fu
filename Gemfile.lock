@@ -1,30 +1,20 @@
 PATH
   remote: .
   specs:
-    completeness-fu (0.5.2)
+    completeness-fu (0.6.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    activemodel (3.0.0)
-      activesupport (= 3.0.0)
+    activemodel (3.0.5)
+      activesupport (= 3.0.5)
       builder (~> 2.1.2)
-      i18n (~> 0.4.1)
-    activesupport (3.0.0)
+      i18n (~> 0.4)
+    activesupport (3.0.5)
     builder (2.1.2)
-    gemcutter (0.6.1)
-    git (1.2.5)
-    i18n (0.4.1)
-    jeweler (1.4.0)
-      gemcutter (>= 0.1.0)
-      git (>= 1.2.5)
-      rubyforge (>= 2.0.0)
-    json_pure (1.4.6)
-    mocha (0.9.8)
-      rake
+    i18n (0.5.0)
+    mocha (0.9.12)
     rake (0.8.7)
-    rubyforge (2.0.4)
-      json_pure (>= 1.1.7)
     shoulda (2.11.3)
 
 PLATFORMS
@@ -33,7 +23,6 @@ PLATFORMS
 DEPENDENCIES
   activemodel (~> 3.0.0)
   completeness-fu!
-  jeweler
   mocha (~> 0.9.8)
   rake (~> 0.8.7)
   shoulda (~> 2.11.3)

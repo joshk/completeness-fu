@@ -1,2 +1,3 @@
 test/test.sqlite3
 pkg
+Gemfile.lock
