@@ -5,30 +5,26 @@
 
 Gem::Specification.new do |s|
   s.name = %q{completeness-fu}
-  s.version = "0.5.2"
+  s.version = "0.6.0"
+  s.date = %q{2011-03-29}
+
+  s.summary     = %q{Simple dsl for defining how to calculate how complete a model instance is (similar to LinkedIn profile completeness)}
+  s.description = s.summary
+  s.homepage    = %q{http://github.com/joshk/completeness-fu}
+
+  s.authors = ["Josh Kalderimis"]
+  s.email   = %q{josh.kalderimis@gmail.com}
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Josh Kalderimis"]
-  s.date = %q{2010-09-04}
-  s.email = %q{josh.kalderimis@gmail.com}
-  s.files = [
-    "VERSION.yml",
-     "init.rb",
-     "lib/completeness-fu.rb",
-     "lib/completeness-fu/active_model_additions.rb",
-     "lib/completeness-fu/scoring_builder.rb"
-  ]
-  s.homepage = %q{http://github.com/joshk/completeness-fu}
+
+  s.extra_rdoc_files = ["readme.markdown"]
   s.rdoc_options = ["--charset=UTF-8"]
-  s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
-  s.summary = %q{Simple dsl for defining how to calculate how complete a model instance is (similar to LinkedIn profile completeness)}
-  s.test_files = [
-    "test/debug.log",
-     "test/en.yml",
-     "test/helper.rb",
-     "test/scoring_test.rb"
-  ]
+
+  s.require_paths = ['lib']
+  s.files = `git ls-files`.split("\n")
+  s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
