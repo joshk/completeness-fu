@@ -1,5 +1,5 @@
 # encoding: utf-8
-require 'test/helper'
+require 'test_helper'
 
 class ScoringTest < Test::Unit::TestCase
 
@@ -7,7 +7,7 @@ class ScoringTest < Test::Unit::TestCase
     setup { rebuild_class('ScoringTest') }
 
     should "have a define_completeness_scoring mixed in" do
-      assert ScoringTest.methods.include?('define_completeness_scoring')
+      assert ScoringTest.methods.map(&:to_s).include?('define_completeness_scoring')
     end
   end
 
