@@ -8,15 +8,15 @@ module CompletenessFu
     def self.included(base)
       base.class_eval do
         def self.define_completeness_scoring(&checks_block)
-          unless self.include?(ActiveModel::Naming)
-            raise CompletenessFuError, 'please make sure ActiveModel::Naming is included so completeness_scoring can translate messages correctly'
+          unless self.respond_to?(:model_name)
+            raise CompletenessFuError, 'please make sure ActiveModel::Naming is included so completeness_scoring can translate messages correctly, or that you implement a model_name method.'
           end
 
           class_inheritable_array :completeness_checks
           cattr_accessor :default_weighting
           cattr_accessor :model_weightings
 
-          self.send :extend, ClassMethods
+          self.send :extend,  ClassMethods
           self.send :include, InstanceMethods
 
           checks_results = CompletenessFu::ScoringBuilder.generate(self, &checks_block)

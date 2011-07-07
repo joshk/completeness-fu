@@ -24,7 +24,7 @@ def rebuild_class(class_name)
   klass = Object.const_set(class_name, Class.new)
 
   klass.class_eval do
-    include ActiveModel::Naming
+    extend  ActiveModel::Naming
     include ActiveModel::Validations
     include ActiveModel::Validations::Callbacks
 
