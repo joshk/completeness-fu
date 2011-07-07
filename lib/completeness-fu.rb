@@ -1,5 +1,5 @@
 module CompletenessFu
-  class CompletenessFuError < RuntimeError; end
+  class CompletenessFuError < StandardError; end
 
   class << self
     attr_accessor :common_weightings
