@@ -12,7 +12,7 @@ module CompletenessFu
             raise CompletenessFuError, 'please make sure ActiveModel::Naming is included so completeness_scoring can translate messages correctly, or that you implement a model_name method.'
           end
 
-          class_inheritable_array :completeness_checks
+          class_attribute :completeness_checks
           cattr_accessor :default_weighting
           cattr_accessor :model_weightings
 
