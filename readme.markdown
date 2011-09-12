@@ -1,5 +1,5 @@
-Welcome to Completeness-Fu
-==========================
+Completeness-Fu [![Build Status](https://secure.travis-ci.org/joshk/completeness-fu.png?branch=master)](http://travis-ci.org/joshk/completeness-fu)
+===============
 
 In short, completeness-fu for ActiveModel allows you cleanly define the way a model instance is scored for completeness, similar to LinkedIn user profiles.
 
