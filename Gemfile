@@ -1,4 +1,4 @@
-source :rubygems
+source "http://rubygems.org"
 
 gem 'activemodel',  '~> 3.0'
 gem 'rake',         '~> 0.8.7'
