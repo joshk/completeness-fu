@@ -7,6 +7,6 @@ rvm:
   - jruby
   - rbx
   - rbx-2.0
-gemfiles:
+gemfile:
   - gemfiles/rails-3.gemfile
   - gemfiles/rails-3-1.gemfile
