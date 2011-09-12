@@ -1,6 +1,5 @@
 rvm:
   - 1.8.7
-  - 1.9.1
   - 1.9.2
   - 1.9.3
   - ruby-head
@@ -8,3 +7,6 @@ rvm:
   - jruby
   - rbx
   - rbx-2.0
+gemfiles:
+  - gemfiles/rails-3.gemfile
+  - gemfiles/rails-3-1.gemfile

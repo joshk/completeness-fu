@@ -1,6 +1,7 @@
 require 'rubygems'
 begin
   require 'bundler/setup'
+  require 'appraisal'
 rescue LoadError
   puts 'although not required, its recommended you use bundler during development'
 end

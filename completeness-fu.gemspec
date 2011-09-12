@@ -31,21 +31,21 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<activemodel>, ["~> 3.0.0"])
-      s.add_development_dependency(%q<rake>, ["~> 0.8.7"])
+      s.add_dependency(%q<activemodel>,         ["~> 3.0"])
+      s.add_development_dependency(%q<rake>,    ["~> 0.8.7"])
       s.add_development_dependency(%q<shoulda>, ["~> 2.11.3"])
-      s.add_development_dependency(%q<mocha>, ["~> 0.9.8"])
+      s.add_development_dependency(%q<mocha>,   ["~> 0.9.8"])
     else
-      s.add_dependency(%q<activemodel>, ["~> 3.0.0"])
-      s.add_dependency(%q<rake>, ["~> 0.8.7"])
-      s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
-      s.add_dependency(%q<mocha>, ["~> 0.9.8"])
+      s.add_dependency(%q<activemodel>, ["~> 3.0"])
+      s.add_dependency(%q<rake>,        ["~> 0.8.7"])
+      s.add_dependency(%q<shoulda>,     ["~> 2.11.3"])
+      s.add_dependency(%q<mocha>,       ["~> 0.9.8"])
     end
   else
-    s.add_dependency(%q<activemodel>, ["~> 3.0.0"])
-    s.add_dependency(%q<rake>, ["~> 0.8.7"])
-    s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
-    s.add_dependency(%q<mocha>, ["~> 0.9.8"])
+    s.add_dependency(%q<activemodel>, ["~> 3.0"])
+    s.add_dependency(%q<rake>,        ["~> 0.8.7"])
+    s.add_dependency(%q<shoulda>,     ["~> 2.11.3"])
+    s.add_dependency(%q<mocha>,       ["~> 0.9.8"])
   end
 end
 
