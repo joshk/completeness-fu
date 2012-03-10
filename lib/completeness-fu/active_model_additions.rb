@@ -1,4 +1,9 @@
-require 'active_support/core_ext/class/inheritable_attributes'
+begin
+  require 'active_support/core_ext/class/inheritable_attributes'
+rescue
+  require 'active_support/core_ext/class/attribute'
+end
+
 require 'active_support/core_ext/class/attribute_accessors'
 
 module CompletenessFu
@@ -12,7 +17,12 @@ module CompletenessFu
             raise CompletenessFuError, 'please make sure ActiveModel::Naming is included so completeness_scoring can translate messages correctly'
           end
 
-          class_inheritable_array :completeness_checks
+          if defined?(class_attribute)
+            class_attribute :completeness_checks, :default_weighting, :model_weightings
+          else
+            class_inheritable_array :completeness_checks
+          end
+
           cattr_accessor :default_weighting
           cattr_accessor :model_weightings
 
