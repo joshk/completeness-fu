@@ -1,6 +1,6 @@
 begin
   require 'active_support/core_ext/class/inheritable_attributes'
-rescue
+rescue LoadError
   require 'active_support/core_ext/class/attribute'
 end
 
