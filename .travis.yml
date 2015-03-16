@@ -3,11 +3,11 @@ language: ruby
 rvm:
   - 1.9.3
   - 2.0.0
-  - 2.1
-  - 2.2
-  - ruby-head
-  - jruby
-  - rbx
+  # - 2.1
+  # - 2.2
+  # - ruby-head
+  # - jruby
+  # - rbx
 
 gemfile:
   - gemfiles/rails-3.gemfile
