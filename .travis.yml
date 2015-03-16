@@ -1,3 +1,5 @@
+language: ruby
+
 rvm:
   - 1.9.3
   - 2.0.0
@@ -6,6 +8,9 @@ rvm:
   - ruby-head
   - jruby
   - rbx
+
 gemfile:
   - gemfiles/rails-3.gemfile
   - gemfiles/rails-3-1.gemfile
+
+sudo: false
