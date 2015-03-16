@@ -16,4 +16,6 @@ gemfile:
 
 sudo: false
 
-before_install: "echo DAMN I LOVE YOU JOSH"
+before_install:
+  - "echo DAMN I LOVE YOU JOSH"
+  - env
