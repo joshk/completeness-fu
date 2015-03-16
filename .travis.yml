@@ -1,21 +1,27 @@
+before_install:
+  - "echo DAMN I LOVE YOU JOSH"
+  - envgemfile:
+  - gemfiles/rails-3.gemfile
+  - gemfiles/rails-3-1.gemfile
+  - gemfiles/rails-3-2.gemfile
+
 language: ruby
 
 rvm:
   - 1.9.3
   - 2.0.0
-  # - 2.1
-  # - 2.2
-  # - ruby-head
-  # - jruby
-  # - rbx
+  - 2.1
+  - 2.2
+  - ruby-head
+  - jruby
+  - rbx
 
-gemfile:
-  - gemfiles/rails-3.gemfile
-  - gemfiles/rails-3-1.gemfile
-  - gemfiles/rails-3-2.gemfile
+matrix:
+  allow_failures:
+    - rvm: 2.1
+    - rvm: 2.2
+    - rvm: ruby-head
+    - rvm: rbx
 
 sudo: false
 
-before_install:
-  - "echo DAMN I LOVE YOU JOSH"
-  - env
