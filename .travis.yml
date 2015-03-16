@@ -12,7 +12,7 @@ env:
   - DEV=FAILE
 
 before_install:
-  - echo DEV
+  - echo $DEV
 
 rvm:
   - 1.9.3
