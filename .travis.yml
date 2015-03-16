@@ -15,3 +15,5 @@ gemfile:
   - gemfiles/rails-3-2.gemfile
 
 sudo: false
+
+before_install: "echo DAMN I LOVE YOU JOSH"
