@@ -40,6 +40,10 @@ class ScoringTest < Test::Unit::TestCase
         assert_equal 20, @st.completeness_score
       end
 
+      should "not have an absolute completeness score of 30" do
+        assert_not_equal 30, @st.completeness_score
+      end
+
       should "have a relative completeness score of 0 (percent complete)" do
         assert_equal 100, @st.percent_complete
       end
