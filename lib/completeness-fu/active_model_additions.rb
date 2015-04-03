@@ -1,4 +1,9 @@
-require 'active_support/core_ext/class/inheritable_attributes'
+if Rails.version =~ /3\.2/
+  require 'active_support/core_ext/class/attribute'
+else
+  require 'active_support/core_ext/class/inheritable_attributes'
+end
+
 require 'active_support/core_ext/class/attribute_accessors'
 
 module CompletenessFu
